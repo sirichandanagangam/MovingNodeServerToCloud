@@ -1,33 +1,26 @@
 const express = require('express')
 const app = express()
-const port = 3000 
-var apiMocker = require('connect-api-mocker');
-const resp = require("./response.json")
-app.get('/data/2.5/weather', (req, res) => {
-   console.log("hi")
-   res.send(resp);   
-})
-app.listen(port, () => {
- console.log(`Example app listening at http://localhost:${port}`)
-})
- 
-const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
 const port = 3000
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 var apiMocker = require('connect-api-mocker');
 const resp = require("./response.json")
 app.get('/data/2.5/weather', (req, res) => {
   console.log("hi")
   res.send(resp);    
 })
+
 app.get('/v1/weather', get_weather_v1)
 
 app.get('/v1/hello', get_hello)
 
 app.post('/v1/auth', post_data)
+
+
 function get_weather_v1(request, response){
   var token1 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
   if(request.body.token == token1){
@@ -41,7 +34,7 @@ function get_weather_v1(request, response){
 function get_hello(request, response){
   var token2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
   if(request.body.token == token2){
-    response.send("Hi! I am Amulya")
+    response.send("Hi! I am Siri Chandana")
   }
   else{
     console.log("Token Not Matching")
@@ -51,8 +44,8 @@ function get_hello(request, response){
 
 function post_data(request, response){
   
-  let usernames = ["User1", "User2", "User3"]
-  let passwords = ["Password1", "Password2", "Password3"]
+  let usernames = ["Amulya", "Siri", "Gautham"]
+  let passwords = ["123", "456", "789"]
   var username = request.body.username
   var pwd = request.body.password
   console.log(request.body)
@@ -68,11 +61,9 @@ function post_data(request, response){
       console.log("validated")
       response.json(res_json)
       
-    }
+    }  
 }
-
 }
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
