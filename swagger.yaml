@@ -1,0 +1,70 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Open Weather -Siri"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /v1/weather:
+    get:
+      description: "Returns weather from the system"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Weather "
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/weather"
+          examples:
+            application/json: |-
+              coord:
+                lon: -123.262
+                lat: 44.5646
+              weather:
+                - id: 803
+                  main: Clouds
+                  description: broken clouds
+                  icon: 04n
+              base: stations
+              main:
+                temp: 282.05
+                feels_like: 282.05
+                temp_min: 280.48
+                temp_max: 283.27
+                pressure: 1026
+                humidity: 84
+              visibility: 10000
+              wind:
+                speed: 0.45
+                deg: 225
+                gust: 0.45
+              clouds:
+                all: 75
+              dt: 1642133639
+              sys:
+                type: 2
+                id: 2040223
+                country: US
+                sunrise: 1642088828
+                sunset: 1642121762
+              timezone: -28800
+              id: 5720727
+              name: Corvallis
+              cod: 200
+              
+definitions:
+  weather:
+    type: "object"
+    required:
+      - "id"
+      - "name"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
